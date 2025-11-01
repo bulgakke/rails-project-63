@@ -41,4 +41,36 @@ RSpec.describe HexletCode::Form do
       )
     end
   end
+
+  context "with text area" do
+    let(:block) do
+      proc do |f|
+        f.input :name, as: :text, class: "user-input", cols: 30
+        f.input :age
+      end
+    end
+
+    it "creates a form tag with specified attributes" do
+      expect(form_html).to eq(
+        <<~HTML.lines.map(&:strip).join
+          <form method="put" action="http://example.com">
+            <textarea name="name" cols="30" rows="40" class="user-input">John</textarea>
+            <input name="age" type="text" value="25"/>
+          </form>
+        HTML
+      )
+    end
+  end
+
+  context "with unrecognized input type" do
+    let(:block) do
+      proc do |f|
+        f.input :name, as: :unknown
+      end
+    end
+
+    it "raises an error" do
+      expect { form_html }.to raise_error(ArgumentError)
+    end
+  end
 end
