@@ -1,4 +1,7 @@
+# frozen_string_literal: true
+
 module HexletCode
+  # Module for creating HTML tags
   module Tag
     module_function
 
