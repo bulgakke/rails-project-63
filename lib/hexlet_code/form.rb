@@ -16,13 +16,13 @@ module HexletCode
       @inputs << FormInputs.build(as, field, value, attrs)
     end
 
-    def submit(value = "Save", **attrs)
+    def submit(value = 'Save', **attrs)
       @inputs << FormInputs.build(:submit, nil, value, attrs)
     end
 
     def fill_default_attributes(attributes)
-      url = attributes.delete(:url) || "#"
-      default_method = "post"
+      url = attributes.delete(:url) || '#'
+      default_method = 'post'
       attributes[:action] ||= url
       attributes[:method] ||= default_method
       attributes
@@ -31,7 +31,7 @@ module HexletCode
     def to_html
       form_body = @inputs.map(&:to_html).join
 
-      Tag.build("form", @attributes) do
+      Tag.build('form', @attributes) do
         form_body
       end
     end

@@ -5,11 +5,11 @@ module HexletCode
     # Form input for for submit button
     class Submit
       def initialize(_field_name, value, attrs = {})
-        @attrs = { type: "submit", value: value }.merge(attrs)
+        @attrs = { type: 'submit', value: value }.merge(attrs)
       end
 
       def to_html
-        Tag.build("input", @attrs)
+        Tag.build('input', @attrs)
       end
     end
   end

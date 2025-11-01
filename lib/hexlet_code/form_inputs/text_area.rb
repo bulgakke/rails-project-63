@@ -10,7 +10,7 @@ module HexletCode
       end
 
       def to_html
-        Tag.build("textarea", @attrs) { @value }
+        Tag.build('textarea', @attrs) { @value }
       end
     end
   end

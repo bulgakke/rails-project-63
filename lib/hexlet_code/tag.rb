@@ -18,7 +18,7 @@ module HexletCode
     def attrs_to_html(attrs_hash)
       return nil if attrs_hash.empty?
 
-      attrs = attrs_hash.map { |key, value| "#{key}=\"#{value}\"" }.join(" ")
+      attrs = attrs_hash.map { |key, value| "#{key}=\"#{value}\"" }.join(' ')
       " #{attrs}"
     end
   end

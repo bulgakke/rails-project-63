@@ -3,10 +3,10 @@
 module HexletCode
   # Factory for creating form inputs of specific types
   module FormInputs
-    autoload(:Base, "hexlet_code/form_inputs/base")
-    autoload(:TextArea, "hexlet_code/form_inputs/text_area")
-    autoload(:Submit, "hexlet_code/form_inputs/submit")
-    autoload(:Label, "hexlet_code/form_inputs/label")
+    autoload(:Base, 'hexlet_code/form_inputs/base')
+    autoload(:TextArea, 'hexlet_code/form_inputs/text_area')
+    autoload(:Submit, 'hexlet_code/form_inputs/submit')
+    autoload(:Label, 'hexlet_code/form_inputs/label')
 
     INPUT_TYPES = {
       base: Base,
