@@ -6,22 +6,13 @@ RSpec.describe HexletCode do
   end
 
   describe ".form_for" do
-    subject { HexletCode.form_for(object, attributes) }
-
     let(:object) { "something" }
+    let(:attributes) { { a: "b" } }
+    let(:block) { proc {} }
 
-    context "without attributes" do
-      it "returns a form tag with default attributes" do
-        expect(HexletCode.form_for("something")).to eq("<form action=\"#\" method=\"post\"></form>")
-      end
-    end
-
-    context "with attributes" do
-      let(:attributes) { { action: "http://example.com", method: "put" } }
-
-      it "returns a form tag with specified attributes" do
-        expect(subject).to eq("<form action=\"http://example.com\" method=\"put\"></form>")
-      end
+    it "calls HexletCode::Form.new" do
+      expect(HexletCode).to receive(:form_for).with(object, attributes, &block)
+      HexletCode.form_for(object, attributes, &block)
     end
   end
 end

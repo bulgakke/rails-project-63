@@ -11,6 +11,8 @@ module HexletCode
 
     def input(field, as: :base, **attrs)
       value = @object.public_send(field)
+      label_options = attrs.delete(:label_options) || {}
+      @inputs << FormInputs.build(:label, field, nil, label_options)
       @inputs << FormInputs.build(as, field, value, attrs)
     end
 

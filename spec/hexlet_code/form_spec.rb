@@ -23,7 +23,9 @@ RSpec.describe HexletCode::Form do
       expect(form_html).to eq(
         <<~HTML.lines.map(&:strip).join
           <form action="#" method="post">
+            <label for="name">Name</label>
             <input name="name" type="text" value="John" class="user-input"/>
+            <label for="age">Age</label>
             <input name="age" type="text" value="25"/>
             <input type="submit" value="Save"/>
           </form>
@@ -37,8 +39,31 @@ RSpec.describe HexletCode::Form do
       expect(form_html).to eq(
         <<~HTML.lines.map(&:strip).join
           <form method="put" action="http://example.com">
+            <label for="name">Name</label>
             <input name="name" type="text" value="John" class="user-input"/>
+            <label for="age">Age</label>
             <input name="age" type="text" value="25"/>
+            <input type="submit" value="Save"/>
+          </form>
+        HTML
+      )
+    end
+  end
+
+  context "with label attributes" do
+    let(:block) do
+      proc do |f|
+        f.input :name, label_options: { value: "Имя", class: "form-label" }
+        f.submit
+      end
+    end
+
+    it "creates a form tag with specified attributes" do
+      expect(form_html).to eq(
+        <<~HTML.lines.map(&:strip).join
+          <form method="put" action="http://example.com">
+            <label for="name" class="form-label">Имя</label>
+            <input name="name" type="text" value="John"/>
             <input type="submit" value="Save"/>
           </form>
         HTML
@@ -59,7 +84,9 @@ RSpec.describe HexletCode::Form do
       expect(form_html).to eq(
         <<~HTML.lines.map(&:strip).join
           <form method="put" action="http://example.com">
+            <label for="name">Name</label>
             <textarea name="name" cols="30" rows="40" class="user-input">John</textarea>
+            <label for="age">Age</label>
             <input name="age" type="text" value="25"/>
             <input type="submit" value="Save"/>
           </form>
