@@ -2,6 +2,7 @@
 
 require 'spec_helper'
 
+# rubocop:disable Metrics/BlockLength
 RSpec.describe HexletCode::Form do
   subject(:form_html) { HexletCode::Form.new(user, form_attributes).tap(&block).to_html }
 
@@ -107,3 +108,4 @@ RSpec.describe HexletCode::Form do
     end
   end
 end
+# rubocop:enable Metrics/BlockLength
