@@ -14,6 +14,10 @@ module HexletCode
       @inputs << FormInputs.build(as, field, value, attrs)
     end
 
+    def submit(value = "Save", **attrs)
+      @inputs << FormInputs.build(:submit, nil, value, attrs)
+    end
+
     def fill_default_attributes(attributes)
       url = attributes.delete(:url) || "#"
       default_method = "post"

@@ -5,11 +5,13 @@ module HexletCode
   module FormInputs
     autoload(:Base, "hexlet_code/form_inputs/base")
     autoload(:TextArea, "hexlet_code/form_inputs/text_area")
+    autoload(:Submit, "hexlet_code/form_inputs/submit")
 
     INPUT_TYPES = {
       base: Base,
       text: TextArea,
-      text_area: TextArea
+      text_area: TextArea,
+      submit: Submit
     }.freeze
 
     def self.build(input_type, field_name, value, attrs = {})

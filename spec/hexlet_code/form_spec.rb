@@ -11,6 +11,8 @@ RSpec.describe HexletCode::Form do
     proc do |f|
       f.input :name, class: "user-input"
       f.input :age
+
+      f.submit
     end
   end
 
@@ -23,6 +25,7 @@ RSpec.describe HexletCode::Form do
           <form action="#" method="post">
             <input name="name" type="text" value="John" class="user-input"/>
             <input name="age" type="text" value="25"/>
+            <input type="submit" value="Save"/>
           </form>
         HTML
       )
@@ -36,6 +39,7 @@ RSpec.describe HexletCode::Form do
           <form method="put" action="http://example.com">
             <input name="name" type="text" value="John" class="user-input"/>
             <input name="age" type="text" value="25"/>
+            <input type="submit" value="Save"/>
           </form>
         HTML
       )
@@ -47,6 +51,7 @@ RSpec.describe HexletCode::Form do
       proc do |f|
         f.input :name, as: :text, class: "user-input", cols: 30
         f.input :age
+        f.submit
       end
     end
 
@@ -56,6 +61,7 @@ RSpec.describe HexletCode::Form do
           <form method="put" action="http://example.com">
             <textarea name="name" cols="30" rows="40" class="user-input">John</textarea>
             <input name="age" type="text" value="25"/>
+            <input type="submit" value="Save"/>
           </form>
         HTML
       )
