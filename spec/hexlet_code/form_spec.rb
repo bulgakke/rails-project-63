@@ -1,0 +1,44 @@
+# frozen_string_literal: true
+
+require "spec_helper"
+
+RSpec.describe HexletCode::Form do
+  subject(:form_html) { HexletCode::Form.new(user, form_attributes).tap(&block).to_html }
+
+  let(:user) { double(:object, name: "John", age: 25) }
+  let(:form_attributes) { { url: "http://example.com", method: "put" } }
+  let(:block) do
+    proc do |f|
+      f.input :name, class: "user-input"
+      f.input :age
+    end
+  end
+
+  context "without attributes" do
+    let(:form_attributes) { {} }
+
+    it "creates a form with default attributes" do
+      expect(form_html).to eq(
+        <<~HTML.lines.map(&:strip).join
+          <form action="#" method="post">
+            <input name="name" type="text" value="John" class="user-input"/>
+            <input name="age" type="text" value="25"/>
+          </form>
+        HTML
+      )
+    end
+  end
+
+  context "with attributes" do
+    it "creates a form tag with specified attributes" do
+      expect(form_html).to eq(
+        <<~HTML.lines.map(&:strip).join
+          <form method="put" action="http://example.com">
+            <input name="name" type="text" value="John" class="user-input"/>
+            <input name="age" type="text" value="25"/>
+          </form>
+        HTML
+      )
+    end
+  end
+end

@@ -5,13 +5,10 @@ require_relative "hexlet_code/version"
 # Main module
 module HexletCode
   autoload(:Tag, "hexlet_code/tag")
+  autoload(:Form, "hexlet_code/form")
+  autoload(:FormInputs, "hexlet_code/form_inputs")
 
-  def self.form_for(object, attributes = {})
-    url = attributes.delete(:url) || "#"
-    default_method = "post"
-    attributes[:action] ||= url
-    attributes[:method] ||= default_method
-
-    HexletCode::Tag.build("form", attributes) {}
+  def self.form_for(object, attributes = {}, &block)
+    Form.new(object, attributes, &block).to_html
   end
 end
