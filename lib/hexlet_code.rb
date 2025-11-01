@@ -9,6 +9,6 @@ module HexletCode
   autoload(:FormInputs, "hexlet_code/form_inputs")
 
   def self.form_for(object, attributes = {}, &block)
-    Form.new(object, attributes, &block).to_html
+    Form.new(object, attributes).tap(&block).to_html
   end
 end
