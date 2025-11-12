@@ -6,8 +6,8 @@ RSpec.describe HexletCode::Tag do
   describe '.build' do
     context 'with a block' do
       it 'returns a paired HTML tag with block result inside' do
-        expect(HexletCode::Tag.build('br') { 'content' }).to eq('<br>content</br>')
-        expect(HexletCode::Tag.build('br', { a: 'b' }) { 'content' }).to eq('<br a="b">content</br>')
+        expect(HexletCode::Tag.build('div') { 'content' }).to eq('<div>content</div>')
+        expect(HexletCode::Tag.build('div', { a: 'b' }) { 'content' }).to eq('<div a="b">content</div>')
       end
     end
 
