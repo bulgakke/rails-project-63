@@ -4,11 +4,10 @@ require_relative 'hexlet_code/version'
 
 # Main module
 module HexletCode
-  autoload(:Tag, 'hexlet_code/tag')
+  autoload(:HTML, 'hexlet_code/html')
   autoload(:Form, 'hexlet_code/form')
-  autoload(:FormInputs, 'hexlet_code/form_inputs')
 
-  def self.form_for(object, attributes = {}, &)
-    Form.new(object, attributes).tap(&).to_html
+  def self.form_for(object, attributes = {}, renderer: HTML::Renderer.new, &)
+    Form.new(object, renderer, attributes).tap(&).render
   end
 end
